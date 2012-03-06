@@ -197,7 +197,14 @@ package
 				if (Enforcement.player[i].fighter != null)//there is a fighter
 				{
 					
+					if (Enforcement.curPlayer == Enforcement.player[i].id)
+					{
+						pBlock[iid].frame = iid + 4;
+					}
+					else
+						pBlock[iid].frame = iid;
 					pBlock[iid].visible = true;
+					
 					pBlock[iid].x = Enforcement.player[i].fighter.x * 32 + Enforcement.board.ofx;
 					pBlock[iid].y = Enforcement.player[i].fighter.y * 32 + Enforcement.board.ofy;
 				}

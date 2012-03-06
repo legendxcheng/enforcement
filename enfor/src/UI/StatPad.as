@@ -299,7 +299,7 @@ package UI
 						this.curTag.visible = true;
 					}
 					else
-						this.curTag.visible = false;
+						this.curTag.visible = true;
 				}
 				else this.visible = false;
 			}
