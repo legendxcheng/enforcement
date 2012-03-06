@@ -26,6 +26,7 @@ package States
 		public var btnRev:PlayBtn;
 		public var btnSkill:PlayBtn;
 		public var btnEnd:PlayBtn;
+		public var btnCancel:PlayBtn
 		public var btnBack:MenuButton;
 		
 		/**
@@ -77,6 +78,12 @@ import UI.MenuButton;
 			this.istate = istat;
 			var cp:Player;
 			this.debugTxt.text = this.istate.toString();
+			if (this.istate == 4)
+			{
+				this.btnCancel.visible = true;
+			}
+			else this.btnCancel.visible = false;
+			
 			switch (this.istate)
 			{
 				case 1:
@@ -133,6 +140,7 @@ import UI.MenuButton;
 				case 4:
 					//atk is clicked
 					//choose opponent
+					
 					cp = this.getPlayer(Enforcement.curPlayer);
 					cp.fighter.aatk = cp.fighter.curSp - cp.fighter.moveSp;
 					cp.fighter.updateAttributes();
@@ -248,15 +256,22 @@ import UI.MenuButton;
 			this.btnAtk = new PlayBtn(85, 140, "ATK");
 			this.btnDef = new PlayBtn(85, 160, "DEF");
 			this.btnRev = new PlayBtn(85, 180, "REV");
-			//btnSkill = new PlayBtn(85, 190, "SKILL");
-			this.btnEnd = new PlayBtn(85, 200, "END");
+			this.btnCancel = new PlayBtn(85, 200, "CANCEL");
+			this.btnEnd = new PlayBtn(85, 220, "END");
 			this.add(btnAtk);
 			this.add(btnDef);
 			this.add(btnRev);
 			this.add(btnSkill);
 			this.add(btnEnd);
-			
+			this.add(btnCancel);
+			btnCancel.visible = false;
 			this.btnBack = new MenuButton(550, 170, "BACK");
+			
+			btnCancel.onUp = function():void
+			{
+				changeIState(2);
+			}
+			
 			this.btnBack.onUp = function():void
 			{
 
