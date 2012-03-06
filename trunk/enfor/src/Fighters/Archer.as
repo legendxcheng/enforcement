@@ -18,19 +18,25 @@ package Fighters
 		
 		override public function calcPossibleMoves():Array
 		{
-			var ret:Array = new Array();
+			if (this.moveRangeSet)
+				return moveRange;
+
+			moveRange = new Array();
+			
 			for (var j:int = Enforcement.board.up; j <= Enforcement.board.bottom; ++j)
 			{
 				for (var i:int = Enforcement.board.left; i <= Enforcement.board.right; ++i)
 				{
 					if (Math.abs(i - this.x) + Math.abs(j - this.y) <= this.curSp / 2 + 2)
 					{
-						ret.push(i);
-						ret.push(j);
+						moveRange.push(i);
+						moveRange.push(j);
 					}
 				}
 			}
-			return ret;
+			moveRangeSet = true;
+			return moveRange;
+
 		}
 		
 		

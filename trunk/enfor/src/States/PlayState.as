@@ -76,8 +76,8 @@ import UI.MenuButton;
 			
 			this.istate = istat;
 			var cp:Player;
-			debugTxt.text = this.istate.toString();
-			switch (istate)
+			this.debugTxt.text = this.istate.toString();
+			switch (this.istate)
 			{
 				case 1:
 					//reset block val every round
@@ -146,7 +146,7 @@ import UI.MenuButton;
 						}
 					}
 					
-					for (i = 0; i < ar.length; ++i)
+					for (i = 0; i < ar.length / 2; ++i)
 					{
 						Enforcement.board.sprBlock[ar[i * 2]][ar[i * 2 + 1]].visible = true;
 					}
@@ -156,32 +156,32 @@ import UI.MenuButton;
 				case 5:
 					//target player is chosed
 					//wait the player to confirm
-					dialog.visible = true;
-					dialog.title.text = "Warnning";
-					dialog.content.text = "Are you sure to attack the player?";
+					this.dialog.visible = true;
+					this.dialog.title.text = "Warnning";
+					this.dialog.content.text = "Are you sure to attack the player?";
 					
 					
 					break;
 				case 6:
 					//def is clicked
 					//wait the player to confirm
-					dialog.visible = true;
-					dialog.title.text = "Warnning";
-					dialog.content.text = "Are you sure to defend?";					
+					this.dialog.visible = true;
+					this.dialog.title.text = "Warnning";
+					this.dialog.content.text = "Are you sure to defend?";					
 					break;
 				case 7:
 					//reverse is clicked
 					//wait the player to confirm
-					dialog.visible = true;
-					dialog.title.text = "Warnning";
-					dialog.content.text = "Reverse the nature will comsume 10 SP, are you sure?";
+					this.dialog.visible = true;
+					this.dialog.title.text = "Warnning";
+					this.dialog.content.text = "Reverse the nature will comsume 10 SP, are you sure?";
 					break;
 				case 8:
 					//skill is clicked
 					//wait the player to confirm
-					dialog.visible = true;
-					dialog.title.text = "Warnning";
-					dialog.content.text = "Unleash a skill will comsume 10 SP, are you sure?";
+					this.dialog.visible = true;
+					this.dialog.title.text = "Warnning";
+					this.dialog.content.text = "Unleash a skill will comsume 10 SP, are you sure?";
 					break;
 			}
 			
@@ -219,56 +219,56 @@ import UI.MenuButton;
 		{
 
 			
-			statPad1 = new StatPad();
-			statPad2 = new StatPad();
-			statPad3 = new StatPad();
-			statPad4 = new StatPad();
+			this.statPad1 = new StatPad();
+			this.statPad2 = new StatPad();
+			this.statPad3 = new StatPad();
+			this.statPad4 = new StatPad();
 			
-			add(statPad1);
-			add(statPad2);
-			add(statPad3);
-			add(statPad4);
+			this.add(statPad1);
+			this.add(statPad2);
+			this.add(statPad3);
+			this.add(statPad4);
 			
-			statPad1.setAttr(0, 0, 1);
-			statPad2.setAttr(540, 0, 2);
-			statPad3.setAttr(0, 260, 3);
-			statPad4.setAttr(540, 260, 4);
+			this.statPad1.setAttr(0, 0, 1);
+			this.statPad2.setAttr(540, 0, 2);
+			this.statPad3.setAttr(0, 260, 3);
+			this.statPad4.setAttr(540, 260, 4);
 			
-			add(new Dice());
+			this.add(new Dice());
 			
-			add(Enforcement.board);
-			istate = 1;
+			this.add(Enforcement.board);
+			this.istate = 1;
 			
-			dialog = new Dialog();
-			add(dialog);
+			this.dialog = new Dialog();
+			this.add(dialog);
 			
-			debugTxt = new FlxText(100, 100, 100);
-			add(debugTxt);
+			this.debugTxt = new FlxText(100, 100, 100);
+			this.add(debugTxt);
 			
-			btnAtk = new PlayBtn(85, 140, "ATK");
-			btnDef = new PlayBtn(85, 160, "DEF");
-			btnRev = new PlayBtn(85, 180, "REV");
+			this.btnAtk = new PlayBtn(85, 140, "ATK");
+			this.btnDef = new PlayBtn(85, 160, "DEF");
+			this.btnRev = new PlayBtn(85, 180, "REV");
 			//btnSkill = new PlayBtn(85, 190, "SKILL");
-			btnEnd = new PlayBtn(85, 200, "END");
-			add(btnAtk);
-			add(btnDef);
-			add(btnRev);
-			add(btnSkill);
-			add(btnEnd);
+			this.btnEnd = new PlayBtn(85, 200, "END");
+			this.add(btnAtk);
+			this.add(btnDef);
+			this.add(btnRev);
+			this.add(btnSkill);
+			this.add(btnEnd);
 			
-			btnBack = new MenuButton(550, 170, "BACK");
-			btnBack.onUp = function():void
+			this.btnBack = new MenuButton(550, 170, "BACK");
+			this.btnBack.onUp = function():void
 			{
 
 				FlxG.switchState(Enforcement.menuState);
 			}
-			add(btnBack);
+			this.add(btnBack);
 			
 			/**
 			 * click def button
 			 * goto inner state 6
 			 */
-			btnDef.onUp = function():void
+			this.btnDef.onUp = function():void
 			{
 				var cp:Player = getPlayer(Enforcement.curPlayer);
 				if (cp.fighter.curSp == 0)
@@ -280,7 +280,7 @@ import UI.MenuButton;
 			 * click reverse button
 			 * goto inner state 7
 			 */
-			btnRev.onUp = function():void
+			this.btnRev.onUp = function():void
 			{
 				var cp:Player = getPlayer(Enforcement.curPlayer);
 				if (cp.fighter.sp >= 10)
@@ -293,7 +293,7 @@ import UI.MenuButton;
 			 * click atk button
 			 * goto inner state 4
 			 */
-			btnAtk.onUp = function():void
+			this.btnAtk.onUp = function():void
 			{
 				var cp:Player = getPlayer(Enforcement.curPlayer);
 				if (cp.fighter.curSp == 0)
@@ -305,7 +305,7 @@ import UI.MenuButton;
 			 * end this turn
 			 * change player
 			 */
-			btnEnd.onUp = function():void
+			this.btnEnd.onUp = function():void
 			{
 				var cp:Player = getPlayer(Enforcement.curPlayer);
 				if (cp.fighter.curSp == 0)
@@ -339,14 +339,14 @@ import UI.MenuButton;
 		{
 			var cp:Player = getPlayer(Enforcement.curPlayer);
 			var tp:Player = getPlayer(Enforcement.targetPlayer);
-			switch (istate)
+			switch (this.istate)
 			{
 				case 5:
 					//target player confirmed
 					//cp = getPlayer(Enforcement.curPlayer);
 					cp.fighter.attck(tp);
-					dialog.visible = false;
-					btnEnd.onUp();
+					this.dialog.visible = false;
+					this.btnEnd.onUp();
 					
 					
 					
@@ -355,7 +355,7 @@ import UI.MenuButton;
 					//def confirmed
 					cp.fighter.ddef = cp.fighter.curSp - cp.fighter.moveSp;
 					cp.fighter.updateAttributes();
-					dialog.visible = false;
+					this.dialog.visible = false;
 					btnEnd.onUp();
 					break;
 				case 7:
@@ -363,7 +363,7 @@ import UI.MenuButton;
 					cp.fighter.atkdefFlag = !cp.fighter.atkdefFlag;
 					cp.fighter.updateAttributes();
 					cp.fighter.sp -= 10;
-					dialog.visible = false;
+					this.dialog.visible = false;
 					changeIState(2);
 					break;
 				case 8:
@@ -378,13 +378,13 @@ import UI.MenuButton;
 		public function cancel():void
 		{
 			var cp:Player = getPlayer(Enforcement.curPlayer);
-			dialog.visible = false;
-			if (istate == 6)
+			this.dialog.visible = false;
+			if (this.istate == 6)
 			{
 				cp.fighter.ddef = 0;
 				cp.fighter.updateAttributes();
 			}
-			else if (istate == 5)
+			else if (this.istate == 5)
 			{
 				cp.fighter.aatk = 0;
 				cp.fighter.updateAttributes();
