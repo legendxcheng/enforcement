@@ -55,6 +55,8 @@ package Fighters
 		//if false, atk minus, def plus
 		public var atkdefFlag:Boolean;
 		
+		public var moveRangeSet:Boolean;
+		public var moveRange:Array;
 		public var moved:Boolean;//has moved this turn
 		//skill point
 		public var sp:int;
@@ -122,6 +124,7 @@ package Fighters
 			atked = false;
 			defed = false;
 			atkSp = 0;
+			this.moveRangeSet = false; 
 			
 		}
 		
@@ -201,19 +204,24 @@ package Fighters
 		 */
 		public function calcPossibleMoves():Array
 		{
-			var ret:Array = new Array();
+			if (this.moveRangeSet)
+				return moveRange;
+	
+			moveRange = new Array();
+			
 			for (var j:int = Enforcement.board.up; j <= Enforcement.board.bottom; ++j)
 			{
 				for (var i:int = Enforcement.board.left; i <= Enforcement.board.right; ++i)
 				{
 					if (Math.abs(i - this.prex) + Math.abs(j - this.prey) <= this.curSp / 2 + 1)
 					{
-						ret.push(i);
-						ret.push(j);
+						moveRange.push(i);
+						moveRange.push(j);
 					}
 				}
 			}
-			return ret;
+			moveRangeSet = true;
+			return moveRange;
 		}
 		
 		/**
