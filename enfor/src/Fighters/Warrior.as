@@ -96,6 +96,7 @@ package Fighters
 					tp.fighter = null;
 				}
 			}
+			logexstr = "    Attak Player" + tp.id + ", produce " + damage + " damage.";
 		}
 		
 		/**

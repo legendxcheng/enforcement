@@ -15,6 +15,8 @@ package UI
 	 */
 	public class StatPad extends FlxGroup
 	{
+		public var isHuman:Boolean;
+		
 		public var bg:StatPadBg;
 		public var ox:int;
 		public var oy:int;
@@ -29,16 +31,23 @@ package UI
 		public var txtCurSP:FlxText;
 		public var txtTotSP:FlxText;
 		public var txtMovSP:FlxText;
-		
+		public var txtAI:FlxText;
+		public var txtHuman:FlxText;
 		public var ico:FlxSprite;
 		public var sp_plus:FlxSprite;
 		public var sp_minus:FlxSprite;
 		public var curTag:FlxSprite;
+		public var ratio1:FlxSprite;
+		public var ratio2:FlxSprite;
+		public var ratioBtn1:Ratio;
+		public var ratioBtn2:Ratio;
 		
 		[Embed(source="pics/sp_plus.png")] protected var ImgSpPlus:Class;
 		[Embed(source="pics/sp_minus.png")] protected var ImgSpMinus:Class;
 		[Embed(source="pics/statpadico.png")] protected var ImgIco:Class;
 		[Embed(source="pics/curTag.png")] protected var ImgTag:Class;
+		[Embed(source="pics/ratio.png")] protected var ImgRatio:Class;
+		
 	
 		public var type:int;
 		public var id:int;
@@ -71,21 +80,37 @@ package UI
 					switch (type)
 					{
 						case Fighter.WARRIOR:
+							txtHuman.visible = true;
+							txtAI.visible = true;
+							ratio1.visible = true;
+							ratio2.visible = true;
 							txtHpVal.text = Fighter.WARRIOR_HP.toString();
 							txtAtkVal.text = Fighter.WARRIOR_ATK.toString();
 							txtDefVal.text = Fighter.WARRIOR_DEF.toString();
 							break;
 						case Fighter.THIEF:
+							txtHuman.visible = true;
+							txtAI.visible = true;
+							ratio1.visible = true;
+							ratio2.visible = true;
 							txtHpVal.text = Fighter.THIEF_HP.toString();
 							txtAtkVal.text = Fighter.THIEF_ATK.toString();
 							txtDefVal.text = Fighter.THIEF_DEF.toString();
 							break;
 						case Fighter.WIZARD:
+							txtHuman.visible = true;
+							txtAI.visible = true;
+							ratio1.visible = true;
+							ratio2.visible = true;
 							txtHpVal.text = Fighter.WIZARD_HP.toString();
 							txtAtkVal.text = Fighter.WIZARD_ATK.toString();
 							txtDefVal.text = Fighter.WIZARD_DEF.toString();
 							break;
 						case Fighter.ARCHER:
+							txtHuman.visible = true;
+							txtAI.visible = true;
+							ratio1.visible = true;
+							ratio2.visible = true;
 							txtHpVal.text = Fighter.ARCHER_HP.toString();
 							txtAtkVal.text = Fighter.ARCHER_ATK.toString();
 							txtDefVal.text = Fighter.ARCHER_DEF.toString();
@@ -94,6 +119,10 @@ package UI
 							txtHpVal.text = "";
 							txtAtkVal.text = "";
 							txtDefVal.text = "";
+							ratio1.visible = false;
+							ratio2.visible = false;
+							txtHuman.visible = false;
+							txtAI.visible = false;
 							break;
 					}
 					
@@ -128,12 +157,33 @@ package UI
 		{
 			super(MaxSize);
 			
+			isHuman = false;
+			
 			type = 4;
 			
 			bg = new StatPadBg(this);//set coordinates afterwards
 			add(bg);
 			
 			adFlag = true;
+			
+			ratioBtn1 = new Ratio();
+			ratioBtn2 = new Ratio();
+			add(ratioBtn1);
+			add(ratioBtn2);
+			
+			ratioBtn1.onUp = function():void
+			{
+				isHuman = true;
+				ratio1.frame = 1;
+				ratio2.frame = 0;
+			}
+				
+			ratioBtn2.onUp = function():void
+			{
+				isHuman = false;
+				ratio1.frame = 0;
+				ratio2.frame = 1;
+			}
 			
 			txtHpVal = new FlxText(0, 0, 100, "");
 			txtHpVal.color = 0xff444444;
@@ -144,6 +194,15 @@ package UI
 			txtDefVal = new FlxText(0, 0, 100, "");
 			txtDefVal.color = 0xff444444;
 			add(txtDefVal);
+			
+			txtHuman = new FlxText(0, 0, 100, "Human");
+			txtHuman.color = 0xff444444;
+			add(txtHuman);
+			txtAI = new FlxText(0, 0, 100, "AI");
+			txtAI.color = 0xff444444;
+			add(txtAI);
+			txtHuman.visible = false;
+			txtAI.visible = false;
 			
 			txtHp = new FlxText(0, 0, 100, "HP");
 			txtHp.color = 0xff444444;
@@ -165,6 +224,18 @@ package UI
 			sp_minus.visible = false;
 			sp_plus.visible = true;
 			
+			ratio1 = new FlxSprite();
+			ratio1.loadGraphic(ImgRatio, false, false, 14, 14, false);
+			ratio1.frame = 0;
+			add(ratio1);
+			ratio1.visible = false;
+			
+			ratio2 = new FlxSprite();
+			ratio2.loadGraphic(ImgRatio, false, false, 14, 14, false);
+			ratio2.frame = 1;
+			add(ratio2);
+			ratio2.visible = false;
+
 			ico = new FlxSprite();
 			ico.loadGraphic(ImgIco, false, false, 40, 40, false);
 			ico.frame = 4;
@@ -246,6 +317,33 @@ package UI
 			txtMovSP.x = ox + 65;
 			txtMovSP.y = oy + 55;
 			
+			if (id == 1 || id == 2)
+			{
+				ratio1.x = ox + 5;
+				ratio1.y = oy + 103;
+				ratio2.x = ox + 55;
+				ratio2.y = oy + 103;
+				txtHuman.x = ox + 20;
+				txtHuman.y = oy + 103;
+				txtAI.x = ox + 70;
+				txtAI.y = oy + 103;
+				
+			}
+			else
+			{
+				ratio1.x = ox + 5;
+				ratio1.y = oy - 15;
+				ratio2.x = ox + 55;
+				ratio2.y = oy - 15;
+				txtHuman.x = ox + 20;
+				txtHuman.y = oy - 15;
+				txtAI.x = ox + 70;
+				txtAI.y = oy - 15;
+			}
+			ratioBtn1.x = ratio1.x;
+			ratioBtn1.y = ratio1.y;
+			ratioBtn2.x = ratio2.x;
+			ratioBtn2.y = ratio2.y;
 		}
 		
 		public function updateSP(p:Boolean):void

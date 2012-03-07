@@ -53,8 +53,8 @@ package States
 			btnmp = new MenuButton(280, 225, "multi-player");
 			btnTutor = new MenuButton(280, 250, "Tutorial");
 			btnExit = new MenuButton(280, 275, "Exit");
-			credit = new FlxText(535, 330, 100, "A game by Xcheng");
-			copyright = new FlxText(535, 340, 100, "All rights reserved.");
+			credit = new FlxText(795, 330, 100, "A game by Xcheng");
+			copyright = new FlxText(795, 340, 100, "All rights reserved.");
 			credit.color = 0xff444444;
 			copyright.color = 0xff444444;
 			logo = new FlxSprite(95, 20, ImgLogo);
