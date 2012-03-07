@@ -98,6 +98,8 @@ package Fighters
 			}
 			atkSp = 2 * ((Math.abs(cx - tx) + Math.abs(cy - ty)) - 1);
 			atked = true;
+			
+			logexstr = "    Attak Player" + tp.id + ", produce " + damage + " damage.";
 		}
 		
 		/**

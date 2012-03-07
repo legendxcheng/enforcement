@@ -11,7 +11,7 @@ package
 	import org.flixel.*;
 	import org.flixel.plugin.TimerManager;
 	
-	[SWF(width="640", height="360", backgroundColor="#111111")] //Set the size and color of the Flash file
+	[SWF(width="900", height="360", backgroundColor="#111111")] //Set the size and color of the Flash file
 	
 	public class Enforcement extends FlxGame
 	{
@@ -110,7 +110,7 @@ package
 		public function Enforcement()
 		{
 			
-			super(640, 360, MenuState, 1, 60, 30, true);
+			super(900, 360, MenuState, 1, 60, 30, true);
 			menuState = new MenuState();
 			playState = new PlayState();
 			selectState = new SelectState();

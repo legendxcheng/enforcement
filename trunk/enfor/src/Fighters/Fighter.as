@@ -30,6 +30,8 @@ package Fighters
 		
 		public var board:Board;//reference to board
 		public var bead:Boolean;
+		public var logstr:String;
+		public var logexstr:String;
 		
 		//original attributes
 		public var _hp:int;//blood volume
@@ -104,6 +106,7 @@ package Fighters
 		{
 			//board referrence
 			atkdefFlag = true;
+			logexstr = "";
 			
 			
 		}
@@ -125,7 +128,8 @@ package Fighters
 			defed = false;
 			atkSp = 0;
 			this.moveRangeSet = false; 
-			
+			logstr = "";
+			logexstr = "";
 		}
 		
 		public function skill():void//super art
@@ -179,7 +183,7 @@ package Fighters
 			this.y = y;
 			
 			updateAttributes();
-
+			
 			
 		}
 		
@@ -197,6 +201,7 @@ package Fighters
 		public function defend():void
 		{
 			defed = true;
+			logexstr = "    Defend.";
 		}
 		
 		/**
@@ -234,6 +239,11 @@ package Fighters
 			sp += curSp - moveSp - atkSp - aatk - ddef;
 			curSp = 0;
 			moveSp = 0;
+			
+			//add log to logwin
+			logstr = "    Player " + Enforcement.curPlayer + ": Move to (" + this.x + ", " + this.y + ").";
+			Enforcement.playState.logwin.log.push("Round " + Enforcement.round + ":\n" + this.logstr + "\n" + this.logexstr);
+			Enforcement.playState.logwin.updateContent();
 		}
 		
 		/**

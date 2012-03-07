@@ -28,6 +28,7 @@ package States
 		public var btnEnd:PlayBtn;
 		public var btnCancel:PlayBtn
 		public var btnBack:MenuButton;
+		public var logwin:LogWin;
 		
 		/**
 		 * call when block btn is pressed
@@ -142,7 +143,7 @@ import UI.MenuButton;
 					//choose opponent
 					
 					cp = this.getPlayer(Enforcement.curPlayer);
-					cp.fighter.aatk = cp.fighter.curSp - cp.fighter.moveSp;
+					cp.fighter.aatk = (cp.fighter.curSp - cp.fighter.moveSp) / 2;//TODO to balance the warrior
 					cp.fighter.updateAttributes();
 					var ar:Array = cp.fighter.atkRange();
 					
@@ -225,7 +226,8 @@ import UI.MenuButton;
 		
 		override public function create():void
 		{
-
+			logwin =  new LogWin();
+			add(logwin);
 			
 			this.statPad1 = new StatPad();
 			this.statPad2 = new StatPad();

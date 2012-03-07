@@ -1,8 +1,8 @@
 package
 {
-	import Fighters.*;
-
 	import Agents.*;
+	
+	import Fighters.*;
 
 	/**
 	 * @author Xcheng

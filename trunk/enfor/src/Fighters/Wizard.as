@@ -92,6 +92,7 @@ package Fighters
 				}
 					
 			}
+			logexstr = "    Attak Player" + tp.id + ", produce " + damage + " damage.";
 		}
 		
 		/**

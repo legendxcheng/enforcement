@@ -20,14 +20,14 @@ package States
 		
 		override public function create():void
 		{
-			tutor = new FlxSprite(0, 0);
+			tutor = new FlxSprite(130, 0);
 			tutor.loadGraphic(ImgTutor, false, false, 640, 360, false);
 			add(tutor);
 			tutor.frame = 0;
 			
-			back = new MenuButton(550, 340, "Back");
-			next = new MenuButton(450, 340, "Next");
-			prev = new MenuButton(350, 340, "Prev");
+			back = new MenuButton(680, 340, "Back");
+			next = new MenuButton(580, 340, "Next");
+			prev = new MenuButton(480, 340, "Prev");
 			
 			back.onUp = function():void
 			{
