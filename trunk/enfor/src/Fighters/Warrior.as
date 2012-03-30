@@ -96,7 +96,8 @@ package Fighters
 					tp.fighter = null;
 				}
 			}
-			logexstr = "    Attak Player" + tp.id + ", produce " + damage + " damage.";
+			if (damage < 0) damage = 0;
+			logexstr = "    Attak Player" + tp.id + ", produce " + damage + " damage.\n";
 		}
 		
 		/**
@@ -111,5 +112,21 @@ package Fighters
 			if (moveSp < 0) moveSp = 0;
 			updateAttributes();
 		}
+		
+		override public function moveEnd():void
+		{
+			moved = true;
+			
+			sp += curSp - moveSp - atkSp - aatk * 5 - ddef;
+			curSp = 0;
+			moveSp = 0;
+			
+			//add log to logwin
+			logstr = "    Player " + Enforcement.curPlayer + ": Move to (" + this.x + ", " + this.y + ").";
+			Enforcement.playState.logwin.log.push("Round " + Enforcement.round + ":\n" + this.logstr + "\n" + this.logexstr);
+			Enforcement.playState.logwin.updateContent();
+		}
 	}
+	
+
 }

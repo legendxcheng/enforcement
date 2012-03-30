@@ -49,8 +49,7 @@ package States
 		{
 			
 			FlxG.bgColor = 0xffdddddd;
-			btnsp = new MenuButton(280, 200, "single-player");
-			btnmp = new MenuButton(280, 225, "multi-player");
+			btnmp = new MenuButton(280, 225, "Play");
 			btnTutor = new MenuButton(280, 250, "Tutorial");
 			btnExit = new MenuButton(280, 275, "Exit");
 			credit = new FlxText(795, 330, 100, "A game by Xcheng");

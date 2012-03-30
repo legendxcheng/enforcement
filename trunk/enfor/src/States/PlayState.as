@@ -118,10 +118,11 @@ import UI.MenuButton;
 					break;
 				case 3:
 					//turn end
+					
+					
 					//do the clean
 					cp = this.getPlayer(Enforcement.curPlayer);
-					cp.fighter.aatk = 0;
-					cp.fighter.updateAttributes();
+					
 					for (i = Enforcement.board.left; i <= Enforcement.board.right; ++i)
 					{
 						for (j = Enforcement.board.up; j <= Enforcement.board.bottom; ++j)
@@ -137,13 +138,16 @@ import UI.MenuButton;
 						cp.fighter.moveEnd();
 					}
 					
+					cp.fighter.aatk = 0;
+					cp.fighter.updateAttributes();
+		
 					break;
 				case 4:
 					//atk is clicked
 					//choose opponent
 					
 					cp = this.getPlayer(Enforcement.curPlayer);
-					cp.fighter.aatk = (cp.fighter.curSp - cp.fighter.moveSp) / 2;//TODO to balance the warrior
+					cp.fighter.aatk = (cp.fighter.sp + cp.fighter.curSp - cp.fighter.moveSp) / 5;//TODO to balance the warrior
 					cp.fighter.updateAttributes();
 					var ar:Array = cp.fighter.atkRange();
 					
