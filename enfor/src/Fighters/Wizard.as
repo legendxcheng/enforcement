@@ -92,7 +92,8 @@ package Fighters
 				}
 					
 			}
-			logexstr = "    Attak Player" + tp.id + ", produce " + damage + " damage.";
+			if (damage < 0) damage = 0;
+			logexstr = "    Attak Player" + tp.id + ", produce " + damage + " damage.\n";
 		}
 		
 		/**

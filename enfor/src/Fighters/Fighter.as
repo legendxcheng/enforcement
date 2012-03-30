@@ -201,7 +201,7 @@ package Fighters
 		public function defend():void
 		{
 			defed = true;
-			logexstr = "    Defend.";
+			logexstr = "    Defend.\n";
 		}
 		
 		/**
@@ -236,7 +236,7 @@ package Fighters
 		{
 			moved = true;
 			
-			sp += curSp - moveSp - atkSp - aatk - ddef;
+			sp += curSp - moveSp - atkSp - ddef;
 			curSp = 0;
 			moveSp = 0;
 			
